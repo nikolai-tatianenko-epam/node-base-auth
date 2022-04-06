@@ -3,21 +3,21 @@ const auth = require('basic-auth');
 const compare = require('tsscmp');
 
 // @todo put user and password.
-const {userName, password} = {userName: 'user4', password: 'password4'};
+const { userName, password } = { userName: 'user4', password: 'password4' };
 
- /**
-  * Basic function to validate credentials for example.
-  * 
-  * Simple method to prevent short-circut and use timing-safe compare.
-  */
-  const check = (name, pass) => {
-    return compare(name, userName) && compare(pass, password);
-  }
+/**
+ * Basic function to validate credentials for example.
+ *
+ * Simple method to prevent short-circut and use timing-safe compare.
+ */
+const check = (name, pass) => {
+  return compare(name, userName) && compare(pass, password);
+};
 
 // Create server.
 const server = http.createServer((req, res) => {
   const credentials = auth(req);
- 
+
   // Check credentials
   // The "check" function will typically be against your user store
   if (!credentials || !check(credentials.name, credentials.pass)) {
@@ -29,7 +29,5 @@ const server = http.createServer((req, res) => {
   }
 });
 
- 
 // Listen
-server.listen(3000)
-
+server.listen(3000);
